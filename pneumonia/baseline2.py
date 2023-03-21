@@ -4,11 +4,11 @@ The files are
 
 # Basic imports
 import numpy as np
+import time
 
 
 # DL / Keras
 
-from tensorflow.keras.utils import image_dataset_from_directory
 from tensorflow.keras import Sequential, layers, models
 from tensorflow.keras.callbacks import EarlyStopping
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
@@ -30,20 +30,20 @@ val_datagen = ImageDataGenerator(
 )
 
 train_generator = train_datagen.flow_from_directory(
-    directory=r"../raw_data/train",
+    directory=r"/home/jerome/code/Anya9889/pneumonia_diagnosis/train",
     target_size=(256, 256),
     color_mode="grayscale",
-    batch_size=32,
+    batch_size=64,
     class_mode="binary",
     shuffle=True,
     seed=42
 )
 
 val_generator = val_datagen.flow_from_directory(
-    directory=r"../raw_data/val",
+    directory=r"/home/jerome/code/Anya9889/pneumonia_diagnosis/val",
     target_size=(256, 256),
     color_mode="grayscale",
-    batch_size=32,
+    batch_size=64,
     class_mode="binary",
     shuffle=True,
     seed=42
@@ -53,8 +53,8 @@ val_generator = val_datagen.flow_from_directory(
 
 def initialize():
     model = Sequential()
-    #model.add(layers.Conv2D(16, (4,4), input_shape=(256, 256, 1), activation="relu"))
-    model.add(layers.Dense(8, activation='relu'))
+    model.add(layers.Conv2D(16, (4,4), input_shape=(256, 256, 1), activation="relu"))
+    #model.add(layers.Dense(8, activation='relu'))
     model.add(layers.Flatten())
     model.add(layers.Dense(1, activation='sigmoid'))
 
@@ -66,17 +66,25 @@ def initialize():
 
 def fitting(model):
 
+    start_time = time.time()
     stopit = EarlyStopping(patience=5,
-                           monitor="val_loss")
+                           monitor="val_loss",
+                           restore_best_weights=True)
 
 
-    model.fit(train_generator,
-            epochs=20,  # Use early stopping in practice
-            batch_size=128,
-            callbacks=stopit,
-            validation_data=val_generator,
-            verbose=True,
-            use_multiprocessing=True)
+    history = model.fit(train_generator,
+                        epochs=20,  # Use early stopping in practice
+                        batch_size=128,
+                        class_weight = {0:2.33, 1:1},
+                        callbacks=stopit,
+                        validation_data=val_generator,
+                        verbose=True,
+                        use_multiprocessing=True)
+
+    print(f"--- {(time.time() - start_time)} ---")
+    return history
 
 base1 = initialize()
+print(base1.summary())
 history = fitting(base1)
+print(history.history)
