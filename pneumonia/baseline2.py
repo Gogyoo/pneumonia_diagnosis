@@ -52,6 +52,11 @@ val_generator = val_datagen.flow_from_directory(
 
 
 def initialize():
+    """Creation of an NN architecture, followed by its compilation
+
+    RETURNS a Sequential object"""
+
+
     model = Sequential()
     model.add(layers.Conv2D(16, (4,4), input_shape=(256, 256, 1), activation="relu"))
     #model.add(layers.Dense(8, activation='relu'))
@@ -65,6 +70,11 @@ def initialize():
     return model
 
 def fitting(model):
+    """A passed model is being fitted across both train and validation sets,
+    and the computation may be ended early through EarlyStopping.
+
+    RETURNS the History object of the fitted model"""
+
 
     start_time = time.time()
     stopit = EarlyStopping(patience=5,
@@ -73,9 +83,8 @@ def fitting(model):
 
 
     history = model.fit(train_generator,
-                        epochs=20,  # Use early stopping in practice
+                        epochs=20,
                         batch_size=128,
-                        class_weight = {0:2.33, 1:1},
                         callbacks=stopit,
                         validation_data=val_generator,
                         verbose=True,
@@ -84,7 +93,9 @@ def fitting(model):
     print(f"--- {(time.time() - start_time)} ---")
     return history
 
+
 base1 = initialize()
 print(base1.summary())
+
 history = fitting(base1)
 print(history.history)
