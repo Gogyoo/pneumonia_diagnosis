@@ -33,7 +33,7 @@ val_datagen = ImageDataGenerator(
 train_generator = train_datagen.flow_from_directory(
     directory=r"/home/jerome/code/Anya9889/pneumonia_diagnosis/train",
     target_size=(256, 256),
-    color_mode="grayscale",
+    color_mode="rgb",
     batch_size=64,
     class_mode="binary",
     shuffle=True,
@@ -43,7 +43,7 @@ train_generator = train_datagen.flow_from_directory(
 val_generator = val_datagen.flow_from_directory(
     directory=r"/home/jerome/code/Anya9889/pneumonia_diagnosis/val",
     target_size=(256, 256),
-    color_mode="grayscale",
+    color_mode="rgb",
     batch_size=64,
     class_mode="binary",
     shuffle=True,
@@ -56,8 +56,7 @@ def initialize_resnet():
     include_top=False,
     weights='imagenet',
     input_shape=(256,256,3),
-    pooling=None,
-    classes=1000
+    pooling=None
     )
     transfer.trainable = False
 
@@ -65,12 +64,11 @@ def initialize_resnet():
 
 def load_own_model(resnet):
     """Initializes a model with a the pre-trained model on top of it"""
-   #TODO: find how to make a (256,256,1) fit in the input layer
     model = Sequential()
 
     model.add(resnet)
     model.add(layers.Flatten())
-    model.add(layers.Dense(100, activation='relu'))
+    model.add(layers.Dense(10, activation='relu'))
     model.add(layers.Dense(1, activation='sigmoid'))
 
     return model
@@ -78,7 +76,7 @@ def load_own_model(resnet):
 def compile(model):
     """Compiles a model"""
 
-    opt = optimizers.Adam(learning_rate=1e-4)
+    opt = optimizers.Adam(learning_rate=1e-3)
     model.compile(loss='binary_crossentropy',
                   optimizer=opt,
                   metrics=['accuracy'])
@@ -98,14 +96,14 @@ def fitting(model):
 
 
     start_time = time.time()
-    stopit = EarlyStopping(patience=5,
+    stopit = EarlyStopping(patience=3,
                            monitor="val_loss",
                            restore_best_weights=True)
 
 
     history = model.fit(train_generator,
                         epochs=20,
-                        batch_size=16,
+                        batch_size=32,
                         callbacks=stopit,
                         validation_data=val_generator,
                         verbose=True,
