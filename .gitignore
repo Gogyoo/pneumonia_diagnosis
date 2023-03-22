@@ -129,6 +129,11 @@ dmypy.json
 .pyre/
 
 # Raw data for the project
-raw_data/
 train/
-val/
+=======
+/original_data
+/raw_data
+/val
+
+
+.DS_Store
