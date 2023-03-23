@@ -12,12 +12,12 @@ def save_results():
     if MODEL_TARGET == "local":
         print("THIS IS A TEST: Saving results locally...")
 
-    elif MODEL_TARGET == "gcp":
+    elif MODEL_TARGET == "gcs":
         print("THIS IS A TEST: Saving results on the cloud...")
 
     else:
         print ("Locale for results should be\
-            either \'local\' or \'\gcp'.\
+            either \'local\' or \'\gcs'.\
             Please check in .env.")
 
 
@@ -29,11 +29,11 @@ def save_model():
 
     if MODEL_TARGET == "local":
         print("THIS IS A TEST: Saving model weights locally...")
-    elif MODEL_TARGET == "gcp":
+    elif MODEL_TARGET == "gcs":
         print("THIS IS A TEST: Saving model weights on the cloud...")
     else:
         print ("Locale to export a model should be\
-            either \'local\' or \'\gcp'.\
+            either \'local\' or \'\gcs'.\
             Please check in .env.")
 
 
@@ -43,9 +43,9 @@ def load_model():
 
     if MODEL_TARGET == "local":
         print("THIS IS A TEST: Loading model weights locally...")
-    elif MODEL_TARGET == "gcp":
+    elif MODEL_TARGET == "gcs":
         print("THIS IS A TEST: Loading model weights on the cloud...")
     else:
         print ("Locale to load a model should be\
-            either \'local\' or \'\gcp'.\
+            either \'local\' or \'\gcs'.\
              Please check in .env.")
