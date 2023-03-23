@@ -127,6 +127,10 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Raw data for the project
+train/
+=======
 /original_data
 /raw_data
 /val
