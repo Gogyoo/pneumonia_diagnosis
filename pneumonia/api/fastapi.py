@@ -1,5 +1,4 @@
 from fastapi import FastAPI
-from pneumonia.baseline import predict
 
 app = FastAPI()
 
