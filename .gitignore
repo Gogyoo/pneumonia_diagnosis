@@ -141,6 +141,5 @@ train/
 
 /original_data
 
-/pneumonia/ml_logic
-/pneumonia/notebook/InceptionV3.py
-/pneumonia/notebook/InceptionV3_model.ipynb
+
+/pneumonia/notebook/
