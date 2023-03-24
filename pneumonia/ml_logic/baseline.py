@@ -71,12 +71,12 @@ def fitting(model,use_multiprocessing=True):
                         use_multiprocessing=use_multiprocessing)
 
     print(f"--- {(time.time() - start_time)} ---")
-    return history
+    return model,history
 
 
-base1 = initialize()
+# base1 = initialize()
 
-compile(base1)
+# compile(base1)
 
-history = fitting(base1, use_multiprocessing=False)
-print(history.history)
+# history = fitting(base1, use_multiprocessing=False)
+# print(history.history)
