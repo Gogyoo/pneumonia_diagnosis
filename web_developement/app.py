@@ -1,9 +1,16 @@
 import streamlit as st
 import json
 import requests
-from streamlit_lottie import st_lottie
 import base64
 from pathlib import Path
+# from multiapp import MultiApp
+# from pages import home, about, contact
+
+# app = MultiApp()
+
+# app.add_app("Home", home.app)
+# app.add_app("About", about.app)
+# app.add_app("Contact", contact.app)
 
 # Defining the functions
 
@@ -44,7 +51,7 @@ with col2:
         return img_html
 
     st.markdown("<p style='text-align: center ; color: grey;'>"+
-                img_to_html('Web developement/88293-lungs.gif')
+                img_to_html('web_developement/88293-lungs.gif')
                 +"</p>", unsafe_allow_html=True)
 # About us and our project
 
@@ -52,7 +59,7 @@ with col2:
 with st.container():
     st.subheader('We are making lung diseases detection easier')
     st.write('Just upload an image of your chest X-ray and get a result in less than a minute!')
-    # st.write('[Learn more >]link to our github/some research papers?')
+
 
 # Add text to the left column
 
