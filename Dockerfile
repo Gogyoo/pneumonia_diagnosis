@@ -1,10 +1,14 @@
-FROM python:3.10-buster
+FROM tensorflow/tensorflow:2.10.0
 
-ADD pneumonia /pneumonia
-COPY Makefile /Makefile
+
+# COPY Makefile /Makefile
 COPY requirements.txt /requirements.txt
 
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-CMD uvicorn app.simple:app --host 0.0.0.0
+COPY pneumonia /pneumonia
+COPY setup.py /setup.py
+RUN pip install .
+
+CMD uvicorn pneumonia.api.fastapi:app --host 0.0.0.0 --port $PORT
