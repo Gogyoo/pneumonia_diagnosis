@@ -141,3 +141,7 @@ train/
 
 
 /original_data
+
+#model
+
+model.h5
