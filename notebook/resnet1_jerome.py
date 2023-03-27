@@ -50,17 +50,21 @@ val_generator = val_datagen.flow_from_directory(
     seed=42
 )
 
+
 def initialize_resnet():
     """Initializes a pre-trained model from the keras library"""
     transfer = ResNet50V2(
     include_top=False,
     weights='imagenet',
+
     input_shape=(256,256,3),
     pooling=None
+
     )
     transfer.trainable = False
 
     return transfer
+
 
 def load_own_model(resnet):
     """Initializes a model with a the pre-trained model on top of it"""
@@ -83,9 +87,11 @@ def compile(model):
     return model
 
 
+
 def save_model():
     #TODO: implement for portability
     pass
+
 
 
 def fitting(model):
@@ -115,4 +121,5 @@ def fitting(model):
 resnet = initialize_resnet()
 full_resnet = load_own_model(resnet)
 full_resnet = compile(full_resnet)
+
 history = fitting(full_resnet)
