@@ -1,4 +1,6 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, UploadFile, File
+from tensorflow.keras.utils import load_img
+from tensorflow.keras import Model
 
 app = FastAPI()
 
@@ -8,7 +10,7 @@ def index():
 
 
 
-@app.get('/predict')
+@app.post('/predict')
 # input: X-ray image, or nothing, and we
 # tell the function to sample randomly
 # from the test subset
@@ -16,10 +18,9 @@ def index():
 # output: Normal/Negative or Pneumonia/Positive,
 # perhaps even with confidence of the model attached to this result
 
-
-def predict(image):
-    # convert image to jpeg if provided
-    # turn it into a tfds
-    # load our best model
-    # predict method on that image
-    return {'wait': "Diagnostic: Pneumonia"}
+async def detect_faces(img: UploadFile=File(...)):
+    # Receiving and decoding the image
+    tested = await img.read()
+    pre_trained = Model.load_weights("gs://pneumonia-models/model.h5")
+    verdict = pre_trained.predict(tested)
+    return {"Prediction": verdict}
