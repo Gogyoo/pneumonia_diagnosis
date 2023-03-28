@@ -60,6 +60,7 @@ with st.container():
     st.subheader('We are making lung diseases detection easier')
     st.write('Just upload an image of your chest X-ray and get a result in less than a minute!')
 
+
 # File uploader
 uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
 st.success('The result is ready!', icon="✅")

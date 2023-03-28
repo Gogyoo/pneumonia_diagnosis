@@ -18,8 +18,8 @@ from tensorflow.keras import Input
 from pneumonia.ml_logic.preprocessor import train_generator, val_generator, test_generator
 
 
-num_pneumonia = len(os.listdir(r"../../raw_data/train/PNEUMONIA"))
-num_normal = len(os.listdir(r'../../raw_data/train/NORMAL'))
+num_pneumonia = len(os.listdir(r"../raw_data/train/PNEUMONIA"))
+num_normal = len(os.listdir(r'../raw_data/train/NORMAL'))
 
 weight_for_0 = num_pneumonia / (num_normal + num_pneumonia)
 weight_for_1 = num_normal / (num_normal + num_pneumonia)

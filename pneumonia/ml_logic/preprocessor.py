@@ -7,7 +7,7 @@ def train_generator():
     '''Load images from train folder on google cloud, perform Normalization on Images.
     Returns images in train_generator'''
 
-    train_generator = image_dataset_from_directory("../../raw_data/train",
+    train_generator = image_dataset_from_directory("../raw_data/train",
     color_mode='rgb',
     batch_size=32,
     image_size=(256, 256),
@@ -21,7 +21,7 @@ def val_generator():
     ''' Load images from val(validation) folder on google cloud, perform Normalization on Images.
     Returns images in val_generator'''
 
-    val_generator = image_dataset_from_directory("../../raw_data/val",
+    val_generator = image_dataset_from_directory("../raw_data/val",
     color_mode='rgb',
     batch_size=32,
     image_size=(256, 256),
@@ -35,7 +35,7 @@ def test_generator():
     ''' Load images from test folder on google cloud, perform Normalization on Images.
     Returns images in test_generator'''
 
-    test_generator = image_dataset_from_directory("../../raw_data/test",
+    test_generator = image_dataset_from_directory("../raw_data/test",
     color_mode='rgb',
     batch_size=32,
     image_size=(256, 256),
