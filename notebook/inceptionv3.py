@@ -30,9 +30,9 @@ def load_own_model(model):
     scale = (1./255.)
     incep_model = initialize_inceptionv3()
     model = Sequential([
-        incep_model,
         Input(shape=input_dim),
         Rescaling(scale),
+        incep_model,
         Flatten(),
         Dense(32, activation="relu"),
         Dropout(0.2),
