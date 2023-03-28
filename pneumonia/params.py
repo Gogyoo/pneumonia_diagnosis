@@ -21,4 +21,4 @@ METRICS_BUCKET_URI = os.environ["METRICS_BUCKET_URI"]
 
 
 LOCAL_DATA_PATH = "raw_data"
-LOCAL_REGISTRY_PATH =  "pneumonia/training_weights"
+LOCAL_REGISTRY_PATH =  "pneumonia"
