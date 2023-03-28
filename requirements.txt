@@ -20,3 +20,4 @@ python-dotenv
 fastapi
 uvicorn
 python-multipart
+google-cloud-storage
