@@ -60,8 +60,11 @@ with st.container():
     st.subheader('We are making lung diseases detection easier')
     st.write('Just upload an image of your chest X-ray and get a result in less than a minute!')
 
+# File uploader
+uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
+st.success('The result is ready!', icon="✅")
 
-# Add text to the left column
+# Add more text
 
 with st.container():
     st.write('---')
@@ -84,9 +87,3 @@ with st.container():
 
             This project seeks to design an application for the automatic detection of pneumonia, which may be appropriate in regions where health professionals do not arrive or as support when defining a diagnosis to reduce the mortality rate associated with Pneumonia.
             ''')
-
-
-uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
-
-
-st.success('The result is ready!', icon="✅")
