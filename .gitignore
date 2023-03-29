@@ -145,4 +145,5 @@ credentials.json
 jerome/
 
 #model
+model.h5
 *.h5
