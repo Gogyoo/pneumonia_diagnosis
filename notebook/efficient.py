@@ -1,29 +1,34 @@
 import numpy as np
 import pandas as pd
-
-from tensorflow.keras.layers import Dense, Flatten, Dropout
-from tensorflow.keras import layers, models
+from keras.models import Sequential
+from keras.layers import Conv2D, MaxPool2D, Dense, Flatten, Dropout
+from keras import layers, models
+import matplotlib.pyplot as plt
+import tensorflow as tf
+import seaborn as sns
+from sklearn.metrics import confusion_matrix, classification_report
 
 from pneumonia.ml_logic.preprocessor import train_generator, val_generator, test_generator
 from pneumonia.ml_logic.baseline import compile, fitting
-
+from tensorflow.keras.layers import Rescaling
 from tensorflow.keras import Input
+from tensorflow.keras import regularizers
 
-from tensorflow.keras.applications.inception_v3 import InceptionV3
-from tensorflow.keras.applications.inception_v3 import preprocess_input
+from tensorflow.keras.applications.efficientnet import EfficientNetB0
+from tensorflow.keras.applications.efficientnet import preprocess_input
 
 
-def inception_v3_pneunomia():
+def efficient():
     # INITIALIZE INPUT LAYER
     input_layer = layers.Input(shape=(256,256,3))
     # PREPROCESSING
     preprocessed = preprocess_input(input_layer)
     # APPLYING THE CONVOLUTIONS OPERATIONS
     # OF THE PRETRAINED INCEPTIONNET ON THE THE PREPROCESSED IMG
-    incep = InceptionV3(include_top = False,
-        weights = 'imagenet')
-    incep.trainable = False
-    activated_img = incep(preprocessed)
+    eff_net = EfficientNetB0(include_top = False,
+                             weights = 'imagenet')
+    eff_net.trainable = False
+    activated_img = eff_net(preprocessed)
     # FLATTEN THE ACTIVATED IMG
     flattened = layers.Flatten()(activated_img)
     # HIDDEN DENSE LAYERS
@@ -45,23 +50,16 @@ def evaluate_model(model, batch_size=32):
     return evaluation
 
 #Instatiate model
-inception_model = inception_v3_pneunomia()
+efficient_model = efficient()
 
 #compile the model
-inception_model = compile(inception_model)
+efficient_model = compile(efficient_model)
 
 # Fit the model
-history_inceptionv3 = fitting(inception_model, use_multiprocessing=False)
+history_eff = fitting(efficient_model, use_multiprocessing=False)
 
-
-evaluate_model(inception_model)
+evaluate_model(efficient_model)
 
 #Save the model
-# path = '/Users/simrankaurvohra/Documents/28.03.23/model/model_1.h5'
-# inception_model.save(path)
-
-
-def predictions(model):
-    return model.predict(test_generator())
-
-#prediction = predictions(test_generator())
+path = '/Users/simrankaurvohra/Documents/28.03.23/model/model_2.h5'
+efficient_model.save(path)
