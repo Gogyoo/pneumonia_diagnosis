@@ -14,9 +14,9 @@ app = FastAPI()
 client = storage.Client()
 
 bloblist = client.list_blobs(MODEL_BUCKET_NAME)
+print(bloblist)
 latest_model_path_to_save = os.path.join(LOCAL_REGISTRY_PATH, "model.h5")
-for blob in bloblist:
-    blob.download_to_filename(latest_model_path_to_save)
+bloblist[-1].download_to_filename(latest_model_path_to_save)
 pre_trained = models.load_model(latest_model_path_to_save)
 
 
