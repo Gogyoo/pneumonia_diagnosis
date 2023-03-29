@@ -102,13 +102,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-
-<<<<<<< HEAD
-.env # TODO: uncomment once the list of variables is completed
-=======
 .env
->>>>>>> 58e330e7f95ca95abc9c7cf7ff4da4b5bfdd1fb0
-
 .envrc
 .venv
 env/
@@ -148,8 +142,7 @@ train/
 
 /original_data
 credentials.json
-
+jerome/
 
 #model
-
 *.h5
