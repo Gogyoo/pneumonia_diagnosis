@@ -14,8 +14,8 @@ Streamlit is used to create web application for the API.</p>
 
  1. Clone this repository to your local disk.
  2. Run the `requirements.txt` file using `pip install -r requirements.txt`.
- 3. Run the `fastapi.py` script using `<COMMAND>`.
- 4. Open `127.0.0.1:XXX` in your browser.
+ 3. Run the `fastapi.py` script using `uvicorn pneumonia.api.fastapi:app --reload`.
+ 4. Open `127.0.0.1:8000` in your browser.
  5. Choose a lung x-ray image from your disk and click on the `Predict` button.
 
 ## Train and Test
