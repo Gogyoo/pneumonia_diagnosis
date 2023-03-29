@@ -143,3 +143,6 @@ train/
 /original_data
 credentials.json
 jerome/
+
+#model
+model.h5
