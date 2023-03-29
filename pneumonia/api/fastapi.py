@@ -28,11 +28,6 @@ def index():
     return {"OK":True}
 
 @app.post('/predict')
-# input: X-ray image
-
-# output: Normal/Negative or Pneumonia/Positive,
-# perhaps even with confidence of the model attached to this result
-
 async def predict(img: UploadFile=File(...)):
     # Receiving and decoding the image
     tested = await img.read()
