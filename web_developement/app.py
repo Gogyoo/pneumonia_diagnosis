@@ -71,7 +71,7 @@ if submit_button:
               files={'img': uploaded_file.getvalue()})
 
 
-    st.write(response.json())
+    st.metric("Chance of having pneumonia", response.json()["Results"])
 
 # Add more text
 
