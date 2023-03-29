@@ -3,7 +3,7 @@ from starlette.responses import Response
 import numpy as np
 
 from google.cloud import storage
-from pneumonia.params import *
+from pneumonia.params import MODEL_BUCKET_NAME, LOCAL_REGISTRY_PATH
 
 from tensorflow.keras import models
 from tensorflow.io import decode_image
