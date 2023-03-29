@@ -63,7 +63,16 @@ with st.container():
 
 # File uploader
 uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
-st.success('The result is ready!', icon="✅")
+submit_button = st.button('Submit')
+
+if submit_button:
+    st.success('The result is ready!', icon="✅")
+    response = requests.post(url = 'http://127.0.0.1:8000',
+              data = uploaded_file.getvalue())
+
+
+    st.write(response)
+    st.write(response.json())
 
 # Add more text
 
