@@ -17,9 +17,9 @@ client = storage.Client()
 # Loading the model in memory once the page is loaded. It takes me about 10s for an +- 100MB h5 model.
 # But then each call to predict based on a test image is almost instantaneous
 bloblist = [blob for blob in client.list_blobs(MODEL_BUCKET_NAME)]
-print(f"{bloblist[-2]} is being used")
+print(bloblist)
 latest_model_path_to_save = os.path.join(LOCAL_REGISTRY_PATH, "model.h5")
-bloblist[-2].download_to_filename(latest_model_path_to_save)
+bloblist[-1].download_to_filename(latest_model_path_to_save)
 pre_trained = models.load_model(latest_model_path_to_save)
 
 
@@ -28,6 +28,11 @@ def index():
     return {"OK":True}
 
 @app.post('/predict')
+# input: X-ray image
+
+# output: Normal/Negative or Pneumonia/Positive,
+# perhaps even with confidence of the model attached to this result
+
 async def predict(img: UploadFile=File(...)):
     # Receiving and decoding the image
     tested = await img.read()
@@ -38,4 +43,4 @@ async def predict(img: UploadFile=File(...)):
     verdict = pre_trained.predict(tupled)
 
 
-    return {"Results": f"{str(round(verdict[0][0]*100,2))}%"}
+    return {"Results": round(verdict[0][0]*100,2)}
