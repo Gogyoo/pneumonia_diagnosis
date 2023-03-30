@@ -15,7 +15,7 @@ Streamlit is used to create web application for the API. URL to the api is https
  1. Clone this repository to your local disk.
  2. Run the `requirements.txt` file using `pip install -r requirements.txt`.
  3. Run the `fastapi.py` script using `uvicorn pneumonia.api.fastapi:app --reload`.
- 4. Open `127.0.0.1:8000` in your browser.
+ 4. Open (https://anya9889-pneumonia-diagnosis-front-app-mtvurf.streamlit.app/) in your browser.
  5. Choose a lung x-ray image from your disk and click on the `Submit` button.
 
 ## Train and Test
@@ -25,8 +25,4 @@ Streamlit is used to create web application for the API. URL to the api is https
 3. Run `evaluate_model()`function inside `inceptionv3.py` to predict test images.
 
 ## Result
-<p>[==============================] - 8s 389ms/step - loss: 0.7281 - accuracy: 0.8394 - recall: 0.9846 <== That is great! That means we can focus on predicting actual positive cases.
-Test Accuracy: 83.94%
-Found 4716 files belonging to 2 classes.
-148/148 [==============================] - 56s 377ms/step - loss: 0.0470 - accuracy: 0.9811 - recall: 0.9764
-Train Accuracy: 98.11%</p>
+<p>Using InceptionNet as an implementation of Transfer Learning, we managed an excellent accuracy (97%) and recall (99%). This is important because we want to avoid false negatives (e.g. sending a patient home who is actuall sick). Conversely the model is lenient on false positives (e.g. patients are told they could be sick with pneumonia, but actually aren't) because then the x-ray can be passed on to a health professional for further assessment.</p>

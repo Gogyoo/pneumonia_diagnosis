@@ -1,7 +1,5 @@
 FROM tensorflow/tensorflow:2.10.0
 
-
-# COPY Makefile /Makefile
 COPY requirements.txt /requirements.txt
 
 RUN pip install --upgrade pip
