@@ -7,8 +7,8 @@ The model does not differentiate between these two categories.
 <img src='images/xray.jpeg'>
 
 ## Model Deployment
-<p>Classification model is deployed with FastAPI and Docker. The endpoint accepts uploaded files and concludes from the image whether it has pneumonia or is normal.
-Streamlit is used to create web application for the API.</p>
+Classification model is deployed with FastAPI and Docker. The endpoint accepts uploaded files and concludes from the image whether it has pneumonia or is normal.
+Streamlit is used to create web application for the API. URL to the api is https://api-cwtil3b3qq-ew.a.run.app/
 
 ## Run the Detection API on LocalHost
 
@@ -16,7 +16,7 @@ Streamlit is used to create web application for the API.</p>
  2. Run the `requirements.txt` file using `pip install -r requirements.txt`.
  3. Run the `fastapi.py` script using `uvicorn pneumonia.api.fastapi:app --reload`.
  4. Open `127.0.0.1:8000` in your browser.
- 5. Choose a lung x-ray image from your disk and click on the `Predict` button.
+ 5. Choose a lung x-ray image from your disk and click on the `Submit` button.
 
 ## Train and Test
 
