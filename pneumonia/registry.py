@@ -1,4 +1,5 @@
-
+# I keep it in the project, like model notebooks whose results
+# were too low, but we never had to use that file.
 
 from pneumonia.params import *
 
