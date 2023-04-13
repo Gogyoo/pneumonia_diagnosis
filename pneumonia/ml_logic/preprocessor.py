@@ -4,7 +4,7 @@ from tensorflow.keras.utils import image_dataset_from_directory
 
 
 def train_generator():
-    '''Load images from train folder on google cloud, perform Normalization on Images.
+    '''Loads images from train folder on disk, performs normalization on images.
     Returns images in train_generator'''
 
     train_generator = image_dataset_from_directory("../raw_data/train",
@@ -18,7 +18,7 @@ def train_generator():
     return train_generator
 
 def val_generator():
-    ''' Load images from val(validation) folder on google cloud, perform Normalization on Images.
+    ''' Loads images from val(validation) folder on disk, performs normalization on images.
     Returns images in val_generator'''
 
     val_generator = image_dataset_from_directory("../raw_data/val",
@@ -32,7 +32,7 @@ def val_generator():
     return val_generator
 
 def test_generator():
-    ''' Load images from test folder on google cloud, perform Normalization on Images.
+    ''' Loads images from test folder on disk, performs normalization on images.
     Returns images in test_generator'''
 
     test_generator = image_dataset_from_directory("../raw_data/test",
