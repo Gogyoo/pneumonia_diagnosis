@@ -55,26 +55,6 @@ with col2:
                 +"</p>", unsafe_allow_html=True)
 # About us and our project
 
-# Add text to the left column
-with st.container():
-    st.subheader('We are making lung diseases detection easier')
-    st.write('Just upload an image of your chest X-ray and get a result in less than a minute!')
-
-
-# File uploader
-uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
-submit_button = st.button('Submit')
-
-if submit_button:
-    st.success('The result is ready!', icon="✅")
-    response = requests.post(url = 'http://127.0.0.1:8000/predict',
-              files={'img': uploaded_file.getvalue()})
-
-
-    st.metric("Chance of having pneumonia", response.json()["Results"])
-
-# Add more text
-
 with st.container():
     st.write('---')
     st.header('Overview')
@@ -96,3 +76,23 @@ with st.container():
 
             This project seeks to design an application for the automatic detection of pneumonia, which may be appropriate in regions where health professionals do not arrive or as support when defining a diagnosis to reduce the mortality rate associated with Pneumonia.
             ''')
+
+
+# Add text to the left column
+with st.container():
+    st.subheader('We are making lung diseases detection easier')
+    st.write('Just upload an image of your chest X-ray and get a result in less than a minute!')
+
+
+# File uploader
+uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
+submit_button = st.button('Submit')
+
+if submit_button:
+    st.success('The result is ready!', icon="✅")
+    response = requests.post(url = 'http://127.0.0.1:8000/predict',
+              files={'img': uploaded_file.getvalue()})
+
+
+    st.metric("Chance of having pneumonia", response.json()["Results"])
+
