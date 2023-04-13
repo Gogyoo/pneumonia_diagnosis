@@ -14,8 +14,8 @@ app = FastAPI()
 
 client = storage.Client()
 
-# Loading the model in memory once the page is loaded. It takes me about 10s for an +- 100MB h5 model.
-# But then each call to predict based on a test image is almost instantaneous
+# Set the model in memory at once when the page is loaded. It takes me about 10s for an +- 100MB h5 model.
+# Then each call to predict based on a test image is almost instantaneous.
 bloblist = [blob for blob in client.list_blobs(MODEL_BUCKET_NAME)]
 print(bloblist)
 latest_model_path_to_save = os.path.join(LOCAL_REGISTRY_PATH, "model.h5")
@@ -30,8 +30,7 @@ def index():
 @app.post('/predict')
 # input: X-ray image
 
-# output: Normal/Negative or Pneumonia/Positive,
-# perhaps even with confidence of the model attached to this result
+# output: Normal/Negative or Pneumonia/Positive
 
 async def predict(img: UploadFile=File(...)):
     # Receiving and decoding the image
