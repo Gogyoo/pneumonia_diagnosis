@@ -18,8 +18,8 @@ def inception_v3_pneunomia():
     input_layer = layers.Input(shape=(256,256,3))
     # PREPROCESSING
     preprocessed = preprocess_input(input_layer)
-    # APPLYING THE CONVOLUTIONS OPERATIONS
-    # OF THE PRETRAINED INCEPTIONNET ON THE THE PREPROCESSED IMG
+    # APPLYING CONVOLUTION OPERATIONS
+    # OF THE PRETRAINED INCEPTIONNET ON THE PREPROCESSED IMAGE
     incep = InceptionV3(include_top = False,
         weights = 'imagenet')
     incep.trainable = False
