@@ -17,7 +17,7 @@ from tensorflow.keras import Input
 
 from pneumonia.ml_logic.preprocessor import train_generator, val_generator, test_generator
 
-
+# Balancing the weights to give the minority class (pneumonia images) a higher weight
 num_pneumonia = len(os.listdir(r"../raw_data/train/PNEUMONIA"))
 num_normal = len(os.listdir(r'../raw_data/train/NORMAL'))
 
@@ -29,7 +29,7 @@ class_weight = {0: weight_for_0, 1: weight_for_1}
 
 def initialize():
     """Creation of an NN architecture, followed by its compilation
-       RETURNS a Sequential object"""
+       Returns a Sequential object"""
     input_dim = (256,256,3)
     scale = (1./255.)
 
@@ -56,7 +56,7 @@ def compile(model):
 def fitting(model,use_multiprocessing=True):
     """A passed model is being fitted across both train and validation sets,
     and the computation may be ended early through EarlyStopping.
-    RETURNS the History object of the fitted model"""
+    Returns the History object of the fitted model"""
 
     start_time = time.time()
     stopit = EarlyStopping(patience=5)
@@ -71,7 +71,7 @@ def fitting(model,use_multiprocessing=True):
                         use_multiprocessing=use_multiprocessing)
 
     print(f"--- {(time.time() - start_time)} ---")
-    return model,history
+    return model, history
 
 
 # base1 = initialize()
